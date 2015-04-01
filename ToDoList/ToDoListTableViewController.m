@@ -16,23 +16,10 @@
 @implementation ToDoListTableViewController
 
 - (void)loadInitialData {
-    ToDoItem *item1 = [[ToDoItem alloc] init];
-    item1.itemName = @"Buy milk";
-    [self.toDoItems addObject:item1];
-    
-    ToDoItem *item2 = [[ToDoItem alloc] init];
-    item2.itemName = @"Buy eggs";
-    [self.toDoItems addObject:item2];
-    
-    ToDoItem *item3 = [[ToDoItem alloc] init];
-    item3.itemName = @"Read a book";
-    [self.toDoItems addObject:item3];
-    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.toDoItems = [[NSMutableArray alloc] init];
     [self loadInitialData];
     
     // Uncomment the following line to preserve selection between presentations.
@@ -41,20 +28,15 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
+- (void)viewWillAppear:(BOOL)animated {
+    [self.tableView reloadData];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)unwindToDoList:(UIStoryboardSegue *)segue {
-    AddToDoItemViewController *source = [segue sourceViewController];
-    ToDoItem *item = source.toDoItem;
-    if (item != nil) {
-        [self.toDoItems addObject:item];
-        [self.tableView reloadData];
-    }
-}
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -64,20 +46,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return [self.toDoItems count];
+    
+    return [[[NSUserDefaults standardUserDefaults] stringArrayForKey:@"active"] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListPrototypeCell" forIndexPath:indexPath];
     
     // Configure the cell...
-    ToDoItem *toDoItem = [self.toDoItems objectAtIndex:indexPath.row];
-    cell.textLabel.text = toDoItem.itemName;
-    if (toDoItem.completed) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    } else {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-    }
+    cell.textLabel.text = [[[NSUserDefaults standardUserDefaults] stringArrayForKey:@"active"] objectAtIndex:indexPath.row];
     
     return cell;
 }
@@ -130,9 +107,26 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    ToDoItem *tappedItem = [self.toDoItems objectAtIndex:indexPath.row];
-    tappedItem.completed = !tappedItem.completed;
-    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    
+    // the finished item
+    NSString* finishedItem = [[[NSUserDefaults standardUserDefaults] stringArrayForKey:@"active"] objectAtIndex:indexPath.row];
+    
+    // remove from active
+    NSMutableArray* activeArray= [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] stringArrayForKey:@"active"]];
+    [activeArray removeObjectAtIndex:indexPath.row];
+    [[NSUserDefaults standardUserDefaults] setObject:activeArray forKey:@"active"];
+    
+    // add to finished
+    NSMutableArray* finishArray = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] stringArrayForKey:@"finished"]];
+    [finishArray addObject:finishedItem];
+    [[NSUserDefaults standardUserDefaults] setObject:finishArray forKey:@"finished"];
+    
+    
+    // synchronize
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    // [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    [tableView reloadData];
 }
 
 @end

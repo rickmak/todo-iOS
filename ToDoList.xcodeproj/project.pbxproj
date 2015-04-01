@@ -11,6 +11,7 @@
 		0315BE3D1AC01BF60069496B /* ToDoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0315BE3C1AC01BF60069496B /* ToDoItem.m */; };
 		0315BE3F1AC02BD90069496B /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0315BE3E1AC02BD90069496B /* libsqlite3.dylib */; };
 		036D30AE1ACBDFCF00DEBF65 /* ToDoListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 036D30AD1ACBDFCF00DEBF65 /* ToDoListTableViewController.m */; };
+		036D30B11ACC074700DEBF65 /* FinishedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 036D30B01ACC074700DEBF65 /* FinishedTableViewController.m */; };
 		03F758221ABC20C0009286D4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F758211ABC20C0009286D4 /* main.m */; };
 		03F758251ABC20C0009286D4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 03F758241ABC20C0009286D4 /* AppDelegate.m */; };
 		03F7582B1ABC20C0009286D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03F758291ABC20C0009286D4 /* Main.storyboard */; };
@@ -37,6 +38,8 @@
 		0315BE3E1AC02BD90069496B /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		036D30AC1ACBDFCF00DEBF65 /* ToDoListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToDoListTableViewController.h; sourceTree = "<group>"; };
 		036D30AD1ACBDFCF00DEBF65 /* ToDoListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToDoListTableViewController.m; sourceTree = "<group>"; };
+		036D30AF1ACC074700DEBF65 /* FinishedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinishedTableViewController.h; sourceTree = "<group>"; };
+		036D30B01ACC074700DEBF65 /* FinishedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinishedTableViewController.m; sourceTree = "<group>"; };
 		03F7581C1ABC20C0009286D4 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03F758201ABC20C0009286D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03F758211ABC20C0009286D4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -103,6 +106,8 @@
 				03F7581F1ABC20C0009286D4 /* Supporting Files */,
 				0315BE3B1AC01BF60069496B /* ToDoItem.h */,
 				0315BE3C1AC01BF60069496B /* ToDoItem.m */,
+				036D30AF1ACC074700DEBF65 /* FinishedTableViewController.h */,
+				036D30B01ACC074700DEBF65 /* FinishedTableViewController.m */,
 			);
 			path = ToDoList;
 			sourceTree = "<group>";
@@ -238,6 +243,7 @@
 				036D30AE1ACBDFCF00DEBF65 /* ToDoListTableViewController.m in Sources */,
 				03F758221ABC20C0009286D4 /* main.m in Sources */,
 				0315BE311AC004AF0069496B /* AddToDoItemViewController.m in Sources */,
+				036D30B11ACC074700DEBF65 /* FinishedTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

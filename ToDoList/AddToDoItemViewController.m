@@ -21,6 +21,7 @@
     // Do any additional setup after loading the view.
 }
 
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -28,17 +29,27 @@
 
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    if (sender != self.saveButton) return;
-    
+- (IBAction)unwindToDoList:(id)sender {
     if (self.textField.text.length > 0) {
         self.toDoItem = [[ToDoItem alloc] init];
         self.toDoItem.itemName = self.textField.text;
-        self.toDoItem.completed = NO;
     }
+    
+    ToDoItem *item = self.toDoItem;
+    if (item != nil) {
+        NSArray* cur = [[NSUserDefaults standardUserDefaults] stringArrayForKey:@"active"];
+        NSMutableArray* newArray = [NSMutableArray arrayWithArray:cur];
+        [newArray addObject:item.itemName];
+        [[NSUserDefaults standardUserDefaults] setObject:newArray forKey:@"active"];
+        if (![[NSUserDefaults standardUserDefaults] synchronize]) {
+            NSLog(@"NSUserDefaults synchronize fail");
+        }
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
+- (IBAction)cancel:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
