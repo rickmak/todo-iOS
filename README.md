@@ -3,7 +3,7 @@ A simple todo app run in iOS
 
 ## Bugs
 
-- Keyboard don't show up
+- Keyboard should show automatically on modal appear
 - At add todo model, the keyboard return key should be 'Done'. Press it will 
   save the item.
 - ToDo item should not finished on touch, make it finished by swipe
