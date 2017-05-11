@@ -13,15 +13,15 @@ A simple todo app run in iOS
 
 1. Show me you can read code and produce good clean code
 1. Fix the above bugs
-1. AddToDoItemViewController and FinishedTableViewController are doing similiar
+1. ToDoListTableViewController and FinishedTableViewController are doing similar
    task, try to extract the common function and reduce code duplication. (okay
    to just think of direction within time, we can discuss it later)
-1. Any refractoring you think will make the code better,
+1. Any refactoring you think will make the code better,
    reduce the chance to produce above bugs
 
 ## Constraint
 
-- You are not allow to import extenal library
+- You are not allow to import external library
 - Time limit is 1 hr
 - Commit should be atomic
 
