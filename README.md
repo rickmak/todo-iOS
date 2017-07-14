@@ -23,7 +23,6 @@ A simple todo app run in iOS
 
 - You are not allow to import external library
 - Time limit is 1 hr
-- Commit should be atomic
 
 ## Evalation
 
